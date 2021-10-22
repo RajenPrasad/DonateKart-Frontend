@@ -1,0 +1,27 @@
+
+
+<div class="container">
+  <h2>Products</h2>
+  <mat-form-field>
+    <mat-select placeholder="Currency" name="currency" [(ngModel)]="selectedCurrencyModel" (selectionChange)="updateProductPrice($event)">
+      <mat-option *ngFor="let currency of currencies" [value]="currency">
+        {{currency}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  
+  <div class="row">
+    <div class="col-sm-4" *ngFor="let product of originalProducts">
+      <img src="{{product.imageSrc}}" alt="{{product.description}}" style="width: 20%;"/>
+      <h3>
+        {{ product.name }}
+      </h3>
+      <p *ngIf="product.description">
+        Description: {{ product.description }}
+      </p>
+      <p>
+        Price: {{product.price * currentER | number : '1.2-2'}}
+      </p>
+    </div>
+  </div>
+</div>
